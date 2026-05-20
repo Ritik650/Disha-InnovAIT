@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "behaviour_n_treated": 20744,
+    "policy_n_treated_disha": 19222,
+    "n_cells": 80128
+  },
+  "policies": {
+    "bau_historical": {
+      "ips_value_per_cell": 6667.938129946244,
+      "dr_value_per_cell": 1590.082139451877,
+      "dr_ci_95": [
+        1501.8740330096844,
+        1688.443608317317
+      ]
+    },
+    "disha": {
+      "ips_value_per_cell": 2793.4172291759915,
+      "dr_value_per_cell": 2947.695898698339,
+      "dr_ci_95": [
+        2770.7936587716445,
+        3124.7319079241047
+      ]
+    }
+  },
+  "disha_lift_dr": 1357.613759246462,
+  "disclaimer": "OPE here is a sanity check, not the headline.  The real-data Causal Forest predictions are biased downward by uncorrected selection (see Phase-5 causal narrative); the absolute numbers should be read as ordinal, not as expected INR.  Headline targeting evidence is the window-constrained scale-residualized Qini (+0.263 CF on real data, see uplift_eval.json).  For a production-quality value estimate we would run a geo-randomized rollout \u2014 see SOLUTION.md \u00a74."
+}

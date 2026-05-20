@@ -1,0 +1,216 @@
+# Agronomic protection windows per crop/stage.
+# Thesis: preventive crop-protection is only effective in a time-window around each crop stage.
+# Default window: opens WINDOW_OPEN_DAYS_BEFORE (21d) before stage approx,
+#                 hard-closes WINDOW_CLOSE_DAYS_AFTER (7d) after stage approx.
+# Decay: value=1.0 from window_open to stage_approx, then linearly decays to 0.0 at window_close.
+# Sources: CABI Crop Protection Compendium; IARI crop-stage recommendations;
+#          Syngenta India product labels (Rabi 2025-26 label claims).
+
+defaults:
+  window_open_days_before: 21   # days before stage approx the window opens
+  window_close_days_after: 7    # days after stage approx the window hard-closes (value → 0)
+  seed: 42
+
+# Maps product name (as in visit log / POS) to relevant crop-stage combos.
+# 'stages' = list of (crop, stage) pairs where this product has protective value.
+# Multiple entries because e.g. Tilt protects both wheat and mustard.
+products:
+  "Tilt 250 EC":
+    type: fungicide
+    active: propiconazole
+    # Rust/blight prevention in wheat; alternaria in mustard; net blotch in barley
+    stages:
+      - {crop: wheat,    stage: tillering,     window_open_days_before: 21, window_close_days_after: 7}
+      - {crop: wheat,    stage: flowering,     window_open_days_before: 21, window_close_days_after: 7}
+      - {crop: mustard,  stage: flowering,     window_open_days_before: 21, window_close_days_after: 7}
+      - {crop: barley,   stage: tillering,     window_open_days_before: 21, window_close_days_after: 7}
+
+  "Score 250 EC":
+    type: fungicide
+    active: difenoconazole
+    stages:
+      - {crop: wheat,    stage: tillering,     window_open_days_before: 21, window_close_days_after: 7}
+      - {crop: wheat,    stage: flowering,     window_open_days_before: 21, window_close_days_after: 7}
+      - {crop: potato,   stage: tuber_initiation, window_open_days_before: 21, window_close_days_after: 7}
+      - {crop: chickpea, stage: flowering,     window_open_days_before: 21, window_close_days_after: 7}
+
+  "Alto 5 SC":
+    type: fungicide
+    active: cyproconazole
+    stages:
+      - {crop: wheat,    stage: tillering,     window_open_days_before: 21, window_close_days_after: 7}
+      - {crop: wheat,    stage: flowering,     window_open_days_before: 21, window_close_days_after: 7}
+      - {crop: barley,   stage: tillering,     window_open_days_before: 21, window_close_days_after: 7}
+      - {crop: barley,   stage: flowering,     window_open_days_before: 21, window_close_days_after: 7}
+
+  "Amistar 250 SC":
+    type: fungicide
+    active: azoxystrobin
+    stages:
+      - {crop: wheat,    stage: tillering,     window_open_days_before: 21, window_close_days_after: 7}
+      - {crop: wheat,    stage: flowering,     window_open_days_before: 21, window_close_days_after: 7}
+      - {crop: potato,   stage: vegetative,    window_open_days_before: 21, window_close_days_after: 7}
+      - {crop: potato,   stage: tuber_initiation, window_open_days_before: 21, window_close_days_after: 7}
+      - {crop: chickpea, stage: pod_fill,      window_open_days_before: 21, window_close_days_after: 7}
+      - {crop: lentil,   stage: flowering,     window_open_days_before: 21, window_close_days_after: 7}
+
+  "Kavach 75 WP":
+    type: fungicide
+    active: chlorothalonil
+    stages:
+      - {crop: potato,   stage: vegetative,    window_open_days_before: 21, window_close_days_after: 7}
+      - {crop: potato,   stage: tuber_initiation, window_open_days_before: 21, window_close_days_after: 7}
+      - {crop: potato,   stage: bulking,       window_open_days_before: 21, window_close_days_after: 7}
+      - {crop: wheat,    stage: tillering,     window_open_days_before: 21, window_close_days_after: 7}
+
+  "Topik 15 WP":
+    type: herbicide
+    active: clodinafop-propargyl
+    # Narrow window: must apply when weeds are small (2-4 leaf stage), around wheat tillering
+    stages:
+      - {crop: wheat,    stage: tillering,     window_open_days_before: 14, window_close_days_after: 5}
+      - {crop: barley,   stage: tillering,     window_open_days_before: 14, window_close_days_after: 5}
+
+  "Axial 50 EC":
+    type: herbicide
+    active: pinoxaden
+    stages:
+      - {crop: wheat,    stage: tillering,     window_open_days_before: 14, window_close_days_after: 5}
+      - {crop: barley,   stage: tillering,     window_open_days_before: 14, window_close_days_after: 5}
+
+  "Vertimec 1.8 EC":
+    type: insecticide_acaricide
+    active: abamectin
+    stages:
+      - {crop: wheat,    stage: tillering,     window_open_days_before: 21, window_close_days_after: 7}
+      - {crop: chickpea, stage: pod_fill,      window_open_days_before: 21, window_close_days_after: 7}
+      - {crop: potato,   stage: tuber_initiation, window_open_days_before: 21, window_close_days_after: 7}
+      - {crop: cumin,    stage: flowering,     window_open_days_before: 21, window_close_days_after: 7}
+
+  "Actara 25 WG":
+    type: insecticide
+    active: thiamethoxam
+    stages:
+      - {crop: wheat,    stage: tillering,     window_open_days_before: 21, window_close_days_after: 7}
+      - {crop: mustard,  stage: vegetative,    window_open_days_before: 21, window_close_days_after: 7}
+      - {crop: chickpea, stage: vegetative,    window_open_days_before: 21, window_close_days_after: 7}
+      - {crop: potato,   stage: vegetative,    window_open_days_before: 21, window_close_days_after: 7}
+
+  "Movondo":
+    type: insecticide
+    active: thiamethoxam+cyantraniliprole
+    stages:
+      - {crop: wheat,    stage: tillering,     window_open_days_before: 21, window_close_days_after: 7}
+      - {crop: chickpea, stage: flowering,     window_open_days_before: 21, window_close_days_after: 7}
+      - {crop: mustard,  stage: flowering,     window_open_days_before: 21, window_close_days_after: 7}
+
+  "Vibrance Integral":
+    type: seed_treatment
+    active: sedaxane+difenoconazole+thiamethoxam
+    # Seed treatment: effective from sowing; window is broad
+    stages:
+      - {crop: wheat,    stage: sowing,        window_open_days_before: 5, window_close_days_after: 5}
+      - {crop: barley,   stage: sowing,        window_open_days_before: 5, window_close_days_after: 5}
+      - {crop: chickpea, stage: sowing,        window_open_days_before: 5, window_close_days_after: 5}
+
+  "Cruiser 350 FS":
+    type: seed_treatment
+    active: thiamethoxam
+    stages:
+      - {crop: wheat,    stage: sowing,        window_open_days_before: 5, window_close_days_after: 5}
+      - {crop: chickpea, stage: sowing,        window_open_days_before: 5, window_close_days_after: 5}
+      - {crop: mustard,  stage: sowing,        window_open_days_before: 5, window_close_days_after: 5}
+
+# Per-crop canonical stages (filled in if grower_crop_calendar is null)
+# Dates are Rabi 2025-26 medians for North/Central India.
+# 'approx' is the median date for that stage across the dataset's geography.
+fallback_calendars:
+  wheat:
+    season: Rabi_2025-26
+    sowing:  {start: "2025-11-01", end: "2025-11-25"}
+    harvest: {start: "2026-03-20", end: "2026-04-15"}
+    stages:
+      - {stage: sowing,     approx: "2025-11-15"}
+      - {stage: tillering,  approx: "2026-01-10"}
+      - {stage: flowering,  approx: "2026-02-20"}
+      - {stage: grain_fill, approx: "2026-03-10"}
+
+  chickpea:
+    season: Rabi_2025-26
+    sowing:  {start: "2025-10-20", end: "2025-11-15"}
+    harvest: {start: "2026-02-20", end: "2026-03-20"}
+    stages:
+      - {stage: sowing,     approx: "2025-11-01"}
+      - {stage: vegetative, approx: "2025-12-01"}
+      - {stage: flowering,  approx: "2026-01-05"}
+      - {stage: pod_fill,   approx: "2026-02-01"}
+
+  mustard:
+    season: Rabi_2025-26
+    sowing:  {start: "2025-10-15", end: "2025-11-10"}
+    harvest: {start: "2026-02-15", end: "2026-03-10"}
+    stages:
+      - {stage: sowing,     approx: "2025-10-25"}
+      - {stage: vegetative, approx: "2025-11-25"}
+      - {stage: flowering,  approx: "2025-12-25"}
+      - {stage: pod_fill,   approx: "2026-01-25"}
+
+  barley:
+    season: Rabi_2025-26
+    sowing:  {start: "2025-10-25", end: "2025-11-20"}
+    harvest: {start: "2026-03-10", end: "2026-04-05"}
+    stages:
+      - {stage: sowing,     approx: "2025-11-05"}
+      - {stage: tillering,  approx: "2026-01-05"}
+      - {stage: flowering,  approx: "2026-02-10"}
+      - {stage: grain_fill, approx: "2026-03-05"}
+
+  potato:
+    season: Rabi_2025-26
+    sowing:  {start: "2025-10-20", end: "2025-11-15"}
+    harvest: {start: "2026-02-01", end: "2026-03-15"}
+    stages:
+      - {stage: sowing,            approx: "2025-11-01"}
+      - {stage: vegetative,        approx: "2025-12-01"}
+      - {stage: tuber_initiation,  approx: "2026-01-01"}
+      - {stage: bulking,           approx: "2026-01-25"}
+
+  lentil:
+    season: Rabi_2025-26
+    sowing:  {start: "2025-10-25", end: "2025-11-20"}
+    harvest: {start: "2026-03-01", end: "2026-04-01"}
+    stages:
+      - {stage: sowing,     approx: "2025-11-05"}
+      - {stage: vegetative, approx: "2025-12-15"}
+      - {stage: flowering,  approx: "2026-01-20"}
+      - {stage: pod_fill,   approx: "2026-02-15"}
+
+  safflower:
+    season: Rabi_2025-26
+    sowing:  {start: "2025-10-20", end: "2025-11-10"}
+    harvest: {start: "2026-03-15", end: "2026-04-20"}
+    stages:
+      - {stage: sowing,      approx: "2025-11-01"}
+      - {stage: rosette,     approx: "2025-12-15"}
+      - {stage: elongation,  approx: "2026-01-20"}
+      - {stage: flowering,   approx: "2026-02-25"}
+
+  cumin:
+    season: Rabi_2025-26
+    sowing:  {start: "2025-10-25", end: "2025-11-15"}
+    harvest: {start: "2026-02-20", end: "2026-03-20"}
+    stages:
+      - {stage: sowing,     approx: "2025-11-05"}
+      - {stage: vegetative, approx: "2025-12-10"}
+      - {stage: flowering,  approx: "2026-01-15"}
+      - {stage: seed_fill,  approx: "2026-02-10"}
+
+  maize:
+    season: Rabi_2025-26
+    sowing:  {start: "2025-10-20", end: "2025-11-10"}
+    harvest: {start: "2026-03-01", end: "2026-04-01"}
+    stages:
+      - {stage: sowing,     approx: "2025-11-01"}
+      - {stage: vegetative, approx: "2025-12-15"}
+      - {stage: tasseling,  approx: "2026-01-25"}
+      - {stage: grain_fill, approx: "2026-02-25"}

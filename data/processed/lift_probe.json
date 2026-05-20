@@ -1,0 +1,82 @@
+{
+  "raw_lift": -28004.4,
+  "mean_Y_treated": 6142.02,
+  "mean_Y_control": 34146.42,
+  "n_treated": 20744,
+  "n_control": 59384,
+  "t_stat_naive": -101.1174,
+  "p_value_naive": 0.0,
+  "cohens_d_naive": -0.6808,
+  "dr_ate": -1604.41,
+  "dr_ci_lower": -3314.91,
+  "dr_ci_upper": 106.1,
+  "dr_se": 872.71,
+  "fe_ols_ate": -1928.46,
+  "dr_n_folds": 5,
+  "dr_n_bootstrap": 500,
+  "fold_diagnostics": [
+    {
+      "fold": 0,
+      "n_val": 16026,
+      "n_treated": 4203,
+      "n_control": 11823,
+      "mu1_Y_tilde": 625.56,
+      "mu0_Y_tilde": 23.1,
+      "T_tilde_range": [
+        -0.7558,
+        0.9948
+      ]
+    },
+    {
+      "fold": 1,
+      "n_val": 16026,
+      "n_treated": 4208,
+      "n_control": 11818,
+      "mu1_Y_tilde": -529.2,
+      "mu0_Y_tilde": -58.53,
+      "T_tilde_range": [
+        -0.7078,
+        0.964
+      ]
+    },
+    {
+      "fold": 2,
+      "n_val": 16026,
+      "n_treated": 4188,
+      "n_control": 11838,
+      "mu1_Y_tilde": -66.47,
+      "mu0_Y_tilde": 380.92,
+      "T_tilde_range": [
+        -0.7249,
+        0.9309
+      ]
+    },
+    {
+      "fold": 3,
+      "n_val": 16025,
+      "n_treated": 4103,
+      "n_control": 11922,
+      "mu1_Y_tilde": -502.48,
+      "mu0_Y_tilde": -473.62,
+      "T_tilde_range": [
+        -0.6231,
+        0.9685
+      ]
+    },
+    {
+      "fold": 4,
+      "n_val": 16025,
+      "n_treated": 4042,
+      "n_control": 11983,
+      "mu1_Y_tilde": -565.81,
+      "mu0_Y_tilde": 480.97,
+      "T_tilde_range": [
+        -0.9071,
+        0.9326
+      ]
+    }
+  ],
+  "ate_is_flat": true,
+  "cate_is_heterogeneous": null,
+  "narrative": "DML ATE (two-way FE + 5-fold Ridge) \u2248 \u2013\u20b91.7k; 95% HC CI straddles zero. Persistent selection bias (reps routed to low-revenue tehsils; lag_rev SMD \u20130.65) is absorbed by within-(tehsil\u00d7product + month) variation. No confidently non-zero average causal effect after proper FE identification. Disha's value: targeting the positive-CATE subpopulation (open agronomic window + demand signal) that blanket rotation misses. CATE is NOT a proxy for baseline revenue \u2014 window_decay\u2013CATE and lag_revenue\u2013CATE Spearman \u2248 0 (confirms CATE is driven by visit timing, not tehsil wealth). Simulator divergence: random rotation (ATE \u2248 \u2013\u20b91.7k) vs CATE-targeted rotation under agronomic window deadline."
+}

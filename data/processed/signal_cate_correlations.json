@@ -1,0 +1,79 @@
+{
+  "n_total": 80128,
+  "cate_mean_overall": -2146.4980421788723,
+  "cate_std_overall": 3078.8265597439577,
+  "scale_variance_explained_by_residualization": 0.37510320420141774,
+  "scale_features": [
+    "lag_revenue_1m",
+    "n_retailers_in_tehsil",
+    "n_growers",
+    "avg_farm_size_ha"
+  ],
+  "signals": {
+    "demand_spike": {
+      "n_flagged": 19954,
+      "prevalence": 0.24902655750798722,
+      "spearman_r_magnitude_vs_cate": -0.06747312276465245,
+      "spearman_p": 1.6872230300807312e-81,
+      "mean_cate_flag_on": -2432.98760682813,
+      "mean_cate_flag_off": -2051.496666617811,
+      "delta_mean_cate": -381.49094021031897,
+      "delta_mean_cate_residualized": -100.94112013415055,
+      "shrink_after_residualization": 0.7354036243206695,
+      "keep_as_l2_feature": false,
+      "role": "scale_artifact"
+    },
+    "oos_opportunity": {
+      "n_flagged": 6322,
+      "prevalence": 0.07889876198083066,
+      "spearman_r_magnitude_vs_cate": -0.03771422676826197,
+      "spearman_p": 1.2714919891232201e-26,
+      "mean_cate_flag_on": -2448.3003002797736,
+      "mean_cate_flag_off": -2120.6465683730307,
+      "delta_mean_cate": -327.6537319067429,
+      "delta_mean_cate_residualized": -68.80301412976267,
+      "shrink_after_residualization": 0.7900130307401918,
+      "keep_as_l2_feature": false,
+      "role": "scale_artifact"
+    },
+    "disease_pressure_alert": {
+      "n_flagged": 16819,
+      "prevalence": 0.20990165734824281,
+      "spearman_r_magnitude_vs_cate": -0.16089779446470626,
+      "spearman_p": 0.0,
+      "mean_cate_flag_on": -2854.278848419175,
+      "mean_cate_flag_off": -1958.465292014509,
+      "delta_mean_cate": -895.8135564046661,
+      "delta_mean_cate_residualized": -977.0420608023246,
+      "shrink_after_residualization": -0.09067568113577984,
+      "keep_as_l2_feature": true,
+      "role": "effect_modifier"
+    },
+    "window_urgency": {
+      "n_flagged": 3366,
+      "prevalence": 0.0420077875399361,
+      "spearman_r_magnitude_vs_cate": -0.16186161768595134,
+      "spearman_p": 0.0,
+      "mean_cate_flag_on": -3595.961853510744,
+      "mean_cate_flag_off": -2082.939312743174,
+      "delta_mean_cate": -1513.0225407675698,
+      "delta_mean_cate_residualized": -1481.0864250150894,
+      "shrink_after_residualization": 0.02110749502534104,
+      "keep_as_l2_feature": true,
+      "role": "effect_modifier"
+    },
+    "digital_demand_signal": {
+      "n_flagged": 104,
+      "prevalence": 0.001297923322683706,
+      "spearman_r_magnitude_vs_cate": -0.07072525661193775,
+      "spearman_p": 2.2358045415966897e-89,
+      "mean_cate_flag_on": -20807.307600980894,
+      "mean_cate_flag_off": -2122.246265285498,
+      "delta_mean_cate": -18685.061335695395,
+      "delta_mean_cate_residualized": -17538.781621070782,
+      "shrink_after_residualization": 0.06134738837783704,
+      "keep_as_l2_feature": false,
+      "role": "context_only"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "n_treated": 20744,
+  "n_control": 59384,
+  "treatment_rate": 0.2589,
+  "propensity_mean_treated": 0.642,
+  "propensity_mean_control": 0.1251,
+  "overlap_width": 0.9362,
+  "overlap_support": true,
+  "n_features_unbalanced": 6,
+  "n_features_checked": 10
+}

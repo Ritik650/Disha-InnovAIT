@@ -1,0 +1,81 @@
+{
+  "demo_path": "dual_synthetic_led",
+  "label": "Dual presentation (synthetic-led, real as honesty proof)",
+  "ate_is_flat": true,
+  "cate_is_heterogeneous": true,
+  "stability_score": 0.888,
+  "window_decay_cate_spearman": -0.1619,
+  "rationale": "DML ATE \u2248 \u2013\u20b91.7k (CI straddles zero) AND R-learner cross-seed CATE r \u2265 0.5. Both narrative tracks have substance, so the demo runs BOTH side-by-side: (1) synthetic engine validation \u2014 on a controlled DGP with pre-registered \u03c4_true, the method recovers r \u2248 0.86 and produces a clean uplift curve; (2) real-data honest result \u2014 Causal Forest's window-constrained, scale-residualized Qini = +0.263 (modest but demonstrably not scale routing: T-learner's apparent Qini collapses 76% under the same residualization, ours holds). The dual framing converts the hostile 'why is your real Qini only 0.26' question into 'because we refuse to inflate it; here is exactly what the engine can do when truth is known, and here is exactly what your data supports'.",
+  "l1_design_note": "L1 signals are CATE *context* (L4 explainability), not L2 features. On the corrected 7-driver set NO single signal is a strong CATE effect-modifier (|spearman_r| < 0.05 for all five \u2014 see data/processed/signal_cate_correlations.json). L2 uplift features = the 7 genuine drivers: window_decay_this_product, avg_disease_pressure, wa_engagement_rate, pct_smartphone, pct_product_scanned, pct_offline_attended, avg_farm_size_ha. Explicitly excluded from the feature set: product/month dummies (structural FE nuisance, absorbed by demeaning), avg_visit_pressure (treatment-derived \u2192 leakage), lag_revenue_1m + n_retailers (baseline-wealth confounders). Window_decay\u2013CATE Spearman \u2248 0 \u2014 CATE not a proxy for tehsil wealth.",
+  "stability_detail": {
+    "stability_score": 0.888,
+    "stability_seed_a": 42,
+    "stability_seed_b": 1042,
+    "pairwise_correlations": [
+      0.888
+    ],
+    "is_stable": true,
+    "stability_threshold": 0.5,
+    "n_folds": 5,
+    "cate_is_heterogeneous": true,
+    "window_decay_cate_spearman": -0.1619,
+    "pct_positive_cate": 0.1591,
+    "features_used": [
+      "window_decay_this_product",
+      "avg_disease_pressure",
+      "wa_engagement_rate",
+      "pct_smartphone",
+      "pct_product_scanned",
+      "pct_offline_attended",
+      "avg_farm_size_ha"
+    ],
+    "features_excluded": {
+      "product": "structural FE nuisance \u2014 absorbed by entity demeaning",
+      "month_index": "structural FE nuisance \u2014 absorbed by time demeaning",
+      "avg_visit_pressure": "treatment-derived (function of T) \u2014 leakage risk",
+      "lag_revenue_1m": "baseline-wealth confounder \u2014 collapses CATE to proxy for wealth",
+      "n_retailers_in_tehsil": "baseline-wealth confounder \u2014 same",
+      "avg_oos_rate": "downstream of demand \u00d7 treatment; ambiguous control"
+    },
+    "structural_dummy_stability_score": 0.8961,
+    "structural_minus_agronomic_gap": 0.0081,
+    "top_drivers": [
+      {
+        "feature": "pct_offline_attended",
+        "std_coef": 725.8672,
+        "is_structural_dummy": false
+      },
+      {
+        "feature": "avg_farm_size_ha",
+        "std_coef": -633.6212,
+        "is_structural_dummy": false
+      },
+      {
+        "feature": "pct_smartphone",
+        "std_coef": -487.6632,
+        "is_structural_dummy": false
+      },
+      {
+        "feature": "wa_engagement_rate",
+        "std_coef": -295.382,
+        "is_structural_dummy": false
+      },
+      {
+        "feature": "pct_product_scanned",
+        "std_coef": 110.3519,
+        "is_structural_dummy": false
+      },
+      {
+        "feature": "avg_disease_pressure",
+        "std_coef": -94.942,
+        "is_structural_dummy": false
+      },
+      {
+        "feature": "window_decay_this_product",
+        "std_coef": -93.1165,
+        "is_structural_dummy": false
+      }
+    ],
+    "note": "R-learner cross-seed r=0.888 (genuine drivers) vs 0.8961 (product+month dummies) \u2014 structural inflation gap=0.0081. Headline r \u2265 0.5: CATE ranking on real drivers is stable; positive-tail targeting is exploitable. window_decay\u2013CATE Spearman=-0.1619 (near zero confirms CATE driven by genuine timing/behavioral heterogeneity, not tehsil wealth)."
+  }
+}

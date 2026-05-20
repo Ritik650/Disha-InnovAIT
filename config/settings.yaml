@@ -1,0 +1,73 @@
+seed: 42
+
+paths:
+  raw_data:        data/raw
+  processed:       data/processed
+  cache_weather:   data/cache/weather
+  cache_osrm:      data/cache/osrm
+  cache_llm:       data/cache/llm
+  twin_parquet:    data/processed/twin.parquet
+  events_parquet:  data/processed/events.parquet
+  uplift_parquet:  data/processed/uplift_features.parquet
+
+season:
+  start: "2025-10-06"
+  end:   "2026-03-29"
+
+uplift:
+  outcome_horizon_weeks: 3       # Y = POS revenue in tehsil over next N weeks post-visit
+  min_outcome_weeks: 2
+  max_outcome_weeks: 4
+  treatment_types:               # visit_type values that count as T=1
+    - "retailer meeting"
+    - "campaign_conducted"
+  test_size: 0.2
+  propensity_clip: 0.05          # clip propensity to [clip, 1-clip]
+
+optimizer:
+  max_visits_per_day: 8
+  working_hours: 9.0
+  service_time_minutes: 30
+  road_speed_kmh: 40.0           # fallback haversine factor
+  travel_overhead_factor: 1.3    # haversine → road distance multiplier
+  osrm_base_url: "http://router.project-osrm.org"
+  osrm_timeout_seconds: 5
+
+weather:
+  open_meteo_base: "https://archive-api.open-meteo.com/v1/archive"
+  variables:
+    - temperature_2m_max
+    - temperature_2m_min
+    - precipitation_sum
+    - relative_humidity_2m_max
+    - relative_humidity_2m_min
+  disease_pressure_rh_threshold: 75   # relative humidity % for high disease pressure
+  disease_pressure_min_days: 3        # consecutive days above threshold → outbreak proxy
+  synthetic_fallback: true
+
+district_centroids:
+  # Pre-computed approximate centroids for the 10 states' major districts.
+  # Used for weather API calls. Format: district: [lat, lon]
+  # (Partial list; missing districts fall back to state centroid.)
+  Patna:       [25.594, 85.137]
+  Hisar:       [29.151, 75.721]
+  Nagpur:      [21.145, 79.088]
+  Jaipur:      [26.912, 75.787]
+  Lucknow:     [26.846, 80.946]
+  Bhopal:      [23.259, 77.412]
+  Amritsar:    [31.634, 74.872]
+  Ahmedabad:   [23.022, 72.571]
+  Hyderabad:   [17.385, 78.486]
+  Pune:        [18.520, 73.856]
+  Bharatpur:   [27.215, 77.490]
+  Kanpur_Nagar: [26.460, 80.330]
+  Jalgaon:     [21.004, 75.568]
+
+ope:
+  n_bootstrap: 200
+  confidence_level: 0.95
+
+sim:
+  seed: 42
+  weeks_to_replay: 26
+  bau_visit_interval_days: 7    # business-as-usual: rotate every N days regardless of urgency

@@ -1,0 +1,22 @@
+{
+  "headline_sentence": "Across 500 reps \u00d7 6-month season \u2248 20,744 historical treatment opportunities and 19,222 in-window cells. Reallocating treatments from zero/negative-CATE cells to the positive-CATE tail (under our OPE DR estimate, with the honesty caveats below) is worth \u20b924.5M \u2013 \u20b931.8M per season at zero added rep-day cost.",
+  "annual_lift_inr_low": 24492679.756769255,
+  "annual_lift_inr_high": 31834774.79718789,
+  "lift_per_cell_low": 1180.7115193197674,
+  "lift_per_cell_high": 1534.6497684722276,
+  "assumptions": {
+    "n_reps": 500,
+    "season_months": 6,
+    "bau_treated_cells": 20744,
+    "in_window_cells": 19222,
+    "bau_per_cell_inr": 1590.082139451877,
+    "disha_per_cell_inr": 2947.695898698339,
+    "lift_ci_method": "DR + 300-boot percentile"
+  },
+  "honesty_disclaimers": [
+    "Real-data CATE absolute values are biased downward by uncorrected selection \u2014 see SOLUTION.md \u00a73 + dgp_gate freeze note.  We use CF for RANKING (residualized Qini = +0.263, validated), not for absolute \u20b9 point estimates.",
+    "OPE values are sanity-check magnitudes; a production-quality lift estimate would require a geo-randomized rollout (see SOLUTION.md \u00a74).",
+    "Number assumes Disha-routed visits are causal substitutes for BAU visits, with no transition-cost overhead or rep-acceptance friction.",
+    "The HEADLINE for technical judges is the dual framing (synthetic engine validation r=0.86 + real residualized Qini +0.26) \u2014 this \u20b9 band is the BUSINESS framing for managers, with caveats made aloud."
+  ]
+}

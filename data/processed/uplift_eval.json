@@ -1,0 +1,128 @@
+{
+  "seed": 42,
+  "dgp_spec": {
+    "name": "uplift_synthetic_v1",
+    "seed": 42,
+    "x_source": "data/processed/monthly_panel.parquet",
+    "t_source": "data/processed/monthly_panel.parquet",
+    "baseline_feature": "lag_revenue_1m",
+    "baseline_intercept": 0.0,
+    "baseline_coef": 1.0,
+    "tau_intercept": 0.0,
+    "tau_coefs_on_z": {
+      "pct_offline_attended": 500.0,
+      "pct_smartphone": 400.0,
+      "wa_engagement_rate": 300.0,
+      "avg_farm_size_ha": -200.0,
+      "pct_product_scanned": 150.0,
+      "window_decay_this_product": 0.0,
+      "avg_disease_pressure": 0.0
+    },
+    "noise_sigma": 5000.0
+  },
+  "feature_set_effect": [
+    "window_decay_this_product",
+    "avg_disease_pressure",
+    "wa_engagement_rate",
+    "pct_smartphone",
+    "pct_product_scanned",
+    "pct_offline_attended",
+    "avg_farm_size_ha"
+  ],
+  "feature_set_confound": [
+    "lag_revenue_1m",
+    "n_retailers_in_tehsil",
+    "n_growers"
+  ],
+  "n_rows": 80128,
+  "synthetic_recovery": {
+    "t_learner": {
+      "spearman_r": 0.9749921179000008,
+      "ate_hat": -79.39314878442804,
+      "ate_true": 1.1023627874923471e-13,
+      "ate_bias": -79.39314878442815,
+      "mse": 37041.513742585834,
+      "window_cate_spearman": -0.02014903787034306
+    },
+    "s_learner": {
+      "spearman_r": 0.01668811875962062,
+      "ate_hat": -21.71968283533722,
+      "ate_true": 1.1023627874923471e-13,
+      "ate_bias": -21.71968283533733,
+      "mse": 672494.6023718837,
+      "window_cate_spearman": -0.004473241325356237
+    },
+    "r_learner": {
+      "spearman_r": 0.8642074234548738,
+      "ate_hat": 65.80474023127397,
+      "ate_true": 1.1023627874923471e-13,
+      "ate_bias": 65.80474023127385,
+      "mse": 170148.47864691756,
+      "window_cate_spearman": -0.1562365106084281
+    },
+    "causal_forest": {
+      "spearman_r": 0.8592914352796998,
+      "ate_hat": -63.065325649133385,
+      "ate_true": 1.1023627874923471e-13,
+      "ate_bias": -63.0653256491335,
+      "mse": 297617.692513992,
+      "window_cate_spearman": -0.03177592632185093
+    }
+  },
+  "qini": {
+    "synthetic": {
+      "t_learner": {
+        "qini_all": 0.0123,
+        "qini_window_only": -0.0666
+      },
+      "s_learner": {
+        "qini_all": 0.0371,
+        "qini_window_only": 0.0169
+      },
+      "r_learner": {
+        "qini_all": -0.1643,
+        "qini_window_only": -0.043
+      },
+      "causal_forest": {
+        "qini_all": 0.104,
+        "qini_window_only": -0.041
+      }
+    },
+    "real": {
+      "t_learner": {
+        "qini_all": 0.0598,
+        "qini_window_only": 0.5574
+      },
+      "s_learner": {
+        "qini_all": -0.0039,
+        "qini_window_only": -0.0367
+      },
+      "r_learner": {
+        "qini_all": -0.1868,
+        "qini_window_only": 0.025
+      },
+      "causal_forest": {
+        "qini_all": -0.0812,
+        "qini_window_only": 0.1551
+      }
+    }
+  },
+  "qini_window_residualized": {
+    "t_learner": {
+      "orig": 0.5573982025812841,
+      "resid": 0.13301201918629738
+    },
+    "s_learner": {
+      "orig": -0.036656483475164814,
+      "resid": 0.014698071880513969
+    },
+    "r_learner": {
+      "orig": 0.025022598344690606,
+      "resid": 0.1651279671641598
+    },
+    "causal_forest": {
+      "orig": 0.15505608488790026,
+      "resid": 0.2632278699331868
+    }
+  }
+}
