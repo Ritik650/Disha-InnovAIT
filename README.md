@@ -131,7 +131,7 @@ The adversarial-test template (used per-layer from L2 onward):
 
 ## Repo links + team
 
-- **Team:** InnovAIT — to be filled in by team lead before submission._
+- **Team:** InnovAIT 
 - **Members + contact:** _TBD._
 - **Demo deploy:** (https://disha-n1t4.onrender.com/)
 - **Source archive:** `disha.zip` (this repo, packaged).
